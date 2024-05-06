@@ -1,7 +1,17 @@
 # ML_for_PIR_array
 
+## To install venv and required lib on windows
 
-##To install venv and required lib on windows
+Mở vscode thực thi lệnh sau:
+
+```
+python -m venv .venv
+.\.venv\Scripts\Activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+## To fix the error of not being able to activate venv
 
 Lỗi này xuất hiện vì chính sách thực thi PowerShell trên hệ thống của bạn không cho phép chạy các script PowerShell. Để giải quyết vấn đề này, bạn cần thay đổi chính sách thực thi PowerShell sang một cấp độ cho phép chạy các script.
 
@@ -29,10 +39,3 @@ Dưới đây là cách thực hiện:
    ```
 
 Lưu ý: Thay đổi chính sách thực thi PowerShell có thể ảnh hưởng đến bảo mật của hệ thống của bạn. Hãy đảm bảo bạn hiểu rõ rủi ro trước khi thực hiện thay đổi này.
-
-Mở vscode thực thi lệnh sau:
-
-python -m venv .venv
-.\.venv\Scripts\Activate
-pip install --upgrade pip
-pip install -r requirements.txt
