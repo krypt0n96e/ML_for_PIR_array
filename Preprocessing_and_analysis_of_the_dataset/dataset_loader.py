@@ -39,7 +39,7 @@ with open('data.csv', mode='w', newline='') as file:
 
             # Số cảm biến
             m = 5
-            step=10
+            step=350
             offset=2.05 #dien ap luc khong phat hien chuyen dong
 
             for sample in range(len(x[0,0])):
@@ -47,7 +47,7 @@ with open('data.csv', mode='w', newline='') as file:
                 start=0
                 end=start+step
             
-                while start<len(x[0,:,0]):
+                while start<350:
                     x_str=[]
                     x_str_len=len(x[0,start:end,sample])
                     if x_str_len<step:
@@ -57,10 +57,10 @@ with open('data.csv', mode='w', newline='') as file:
                     else:
                         for sensor in range(m):
                             x_str.append("[" + ",".join(map(str, x[sensor,start:end,sample])) + "]")
-                    # y_str="[" + ",".join(map(str, y[0,start:end,sample])) + "]"
-                    y_str=mode(y[0,start:end,sample].tolist()) #lay nhan xuat hien nhieu nhat trong khoang
-                    start+=10
-                    end+=10
+                    y_str="[" + ",".join(map(str, y[0,start:end,sample])) + "]"
+                    # y_str=mode(y[0,start:end,sample].tolist()) #lay nhan xuat hien nhieu nhat trong khoang
+                    start+=step
+                    end+=step
 
                     # Ghi dữ liệu vào file CSV
                     writer.writerow({'x1': x_str[0], 'x2': x_str[1], 'x3': x_str[2],'x4': x_str[3],'x5': x_str[4], 'y': y_str})
