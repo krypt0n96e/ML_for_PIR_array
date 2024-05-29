@@ -27,28 +27,26 @@ with open('data_test_data.csv', mode='w', newline='') as file:
             # Lấy tên file mà không có phần mở rộng
             mat_file_name = os.path.basename(os.path.splitext(filename)[0])
 
-        # Đọc dữ liệu từ file .mat
-        data = scipy.io.loadmat(os.path.join(folder_path, f'{mat_file_name}.mat'))
+            # Đọc dữ liệu từ file .mat
+            data = scipy.io.loadmat(os.path.join(folder_path, f'{mat_file_name}.mat'))
 
-        for s in range(len(data['testing_data'])):
-            # Trích xuất dữ liệu từ file .mat
-            x = data['testing_data'][s, 0]
-            y = data['testing_data'][s, 1]
+            for s in range(len(data['testing_data'])):
+                # Trích xuất dữ liệu từ file .mat
+                x = data['testing_data'][s, 0]
+                y = data['testing_data'][s, 1]
 
-            # Số cảm biến
-            m = 5
-            x_str = []
-            y_str = []
-            x_str_len = len(x[0, :])
-            
-            for sensor in range(m):
-                segment_x = x[sensor, :]
-                x_str.append("[" + ",".join(map(str, segment_x)) + "]")
+                # Số cảm biến
+                m = 5
+                x_str = []
+                x_str_len = len(x[0, :])
 
-            if x_str:
-                segment_y = y[:]
-                y_str.append("[" + ",".join(map(str, segment_y)) + "]")
-                writer.writerow({'x1': x_str[0], 'x2': x_str[1], 'x3': x_str[2], 'x4': x_str[3], 'x5': x_str[4], 'y': y_str[0]})
+                for sensor in range(m):
+                    segment_x = x[sensor, :]
+                    x_str.append("[" + ",".join(map(str, segment_x)) + "]")
+
+                if x_str:
+                    y_str = ",".join(map(str, y.tolist()))
+                    writer.writerow({'x1': x_str[0], 'x2': x_str[1], 'x3': x_str[2], 'x4': x_str[3], 'x5': x_str[4], 'y': y_str})
 
 print("File CSV đã được lưu.")
 
