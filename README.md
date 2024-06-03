@@ -7,7 +7,7 @@ Mở vscode thực thi lệnh sau:
 ```
 python -m venv .venv
 .\.venv\Scripts\Activate
-pip install --upgrade pip
+python.exe -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -39,3 +39,10 @@ Dưới đây là cách thực hiện:
    ```
 
 Lưu ý: Thay đổi chính sách thực thi PowerShell có thể ảnh hưởng đến bảo mật của hệ thống của bạn. Hãy đảm bảo bạn hiểu rõ rủi ro trước khi thực hiện thay đổi này.
+
+## To install pytorch and jupiter notebook in vscode
+
+```
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install notebook
+```
