@@ -40,7 +40,7 @@ with open('data.csv', mode='w', newline='') as file:
             # Số cảm biến
             m = 5
             step=10
-            offset=2.05 #dien ap luc khong phat hien chuyen dong
+            offset=2.05#dien ap luc khong phat hien chuyen dong
 
             for sample in range(len(x[0,0])):
                 #cat 10 timestep mot
@@ -51,14 +51,22 @@ with open('data.csv', mode='w', newline='') as file:
                     x_str=[]
                     x_str_len=len(x[0,start:end,sample])
                     if x_str_len<step:
+                        # break
                         for sensor in range(m):
                             #them vao cuoi các giá trị = dien ap khi khong co chuyen dong de mo rong xau bi cat
                             x_str.append("[" + ",".join(map(str, x[sensor,start:end,sample]))+","+",".join(map(str, np.zeros(step-x_str_len)+offset)) + "]")
-                    else:
-                        for sensor in range(m):
-                            x_str.append("[" + ",".join(map(str, x[sensor,start:end,sample])) + "]")
-                    # y_str="[" + ",".join(map(str, y[0,start:end,sample])) + "]"
-                    y_str=mode(y[0,start:end,sample].tolist()) #lay nhan xuat hien nhieu nhat trong khoang
+                    # else:
+                    for sensor in range(m):
+                        # x_str.append("[" + ",".join(map(str, x[sensor,start:end,sample])) + "]")
+                        x_str.append("[" + ",".join(map(lambda val: "{:.2f}".format(val - offset), x[sensor, start:end, sample])) + "]")
+
+                    
+
+                    y_str="[" + ",".join(map(str, y[0,start:end,sample])) + "]" #chuyen thanh xau
+                    # y_str=mode(y[0,start:end,sample].tolist()) #lay nhan xuat hien nhieu nhat trong khoang
+                    y_str_len=len(y[0,start:end,sample])
+                    if y_str_len<step:
+                        y_str="[" + ",".join(map(str, y[0,start:end,sample])) + ",".join(map(str, np.zeros(step-len(y_str_len)))) + "]"
                     start+=10
                     end+=10
 

@@ -6,7 +6,7 @@ from statistics import mode
 
 # Define constants
 folder_path = "./PIR_DATASET/training_data"  # Path to the folder containing .mat files
-output_csv = 'data.csv'  # Output CSV file name
+output_csv = 'data_v3.csv'  # Output CSV file name
 step = 10  # Step size for slicing
 m = 5  # Number of sensors
 offset = 2.05  # Voltage when no motion is detected
