@@ -53,7 +53,7 @@ with open('data_v2.csv', mode='w', newline='') as file:
                     for sensor in range(m):
                         # Nếu độ dài ngắn hơn step, thêm các giá trị `offset` để mở rộng chuỗi
                         if x_str_len < step:
-                            sensor_data = list(x[sensor, start:end, sample]) + [0] * (step - x_str_len)
+                            sensor_data = [val - offset for val in x[sensor, start:end, sample]] + [0] * (step - x_str_len)
                         else:
                             # Chuyển các giá trị thành chuỗi sau khi trừ offset
                             sensor_data = [val - offset for val in x[sensor, start:end, sample]]
